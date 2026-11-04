@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AshaParth AI">
+  <defs>
+    <linearGradient id="ap-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7A1D2B"/>
+      <stop offset="0.55" stop-color="#A3301F"/>
+      <stop offset="1" stop-color="#E8740C"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#ap-bg)"/>
+  <!-- "A" -->
+  <path d="M16 48 L30 16 L44 48" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Arrow of growth through the A (Parth, the archer) -->
+  <path d="M19 40 L45 24" fill="none" stroke="#F6C77C" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M37 22.5 L46.5 23 L43 31.5" fill="none" stroke="#F6C77C" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- AI spark -->
+  <circle cx="50" cy="14" r="3.2" fill="#FFFFFF"/>
+  <circle cx="50" cy="14" r="6" fill="none" stroke="#FFFFFF" stroke-opacity=".35" stroke-width="1.5"/>
+</svg>
