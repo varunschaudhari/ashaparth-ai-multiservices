@@ -16,6 +16,8 @@ $groups = [
 ];
 ?>
 
+<?php partial('service-finder'); ?>
+
 <?php foreach ($groups as $cat => [$eyebrow, $title, $text]): ?>
 <section class="section<?= $cat === 'grow' ? ' section-soft' : '' ?>">
   <div class="container">

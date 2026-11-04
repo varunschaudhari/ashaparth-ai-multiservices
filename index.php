@@ -27,7 +27,7 @@ $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 $routes = [
     ''                     => ['home', ['title' => '', 'description' => config('description')]],
     'about'                => ['about', ['title' => 'About Our Digital Agency in Amalner, Jalgaon', 'description' => 'Meet the founders of AshaParth AI Multiservices, a digital agency from Amalner, Jalgaon helping businesses and temples grow with technology.']],
-    'services'             => ['services', ['title' => 'Digital Services in Jalgaon & Maharashtra', 'description' => 'Website development, mobile apps, AI & automation, custom software, SEO, social media marketing, paid ads and graphic design, all under one roof.']],
+    'services'             => ['services', ['title' => 'Digital Services in Jalgaon & Maharashtra', 'description' => 'Website development, resume websites, mobile apps, AI & automation, custom software, SEO, social media marketing, paid ads and graphic design.']],
     'temple-solutions'     => ['temple-solutions', ['title' => 'Temple Websites, Apps & Live Darshan Services', 'description' => 'Complete digital solutions for temples: 24x7 live darshan, HD camera setup, temple websites, mobile apps, online donations, pooja booking and social media.']],
     'live-darshan-service' => ['live-darshan-service', ['title' => 'Temple Live Darshan Service in Maharashtra', 'description' => 'HD live darshan for temples across Maharashtra: camera setup, 24x7 or aarti-time streaming on YouTube and your website, with full support.', 'schema' => [[
         '@context'    => 'https://schema.org',
@@ -51,6 +51,11 @@ $routes = [
 
 if ($path === 'sitemap.xml') {
     require APP_DIR . '/views/sitemap.php';
+    exit;
+}
+
+if ($path === 'resume-website-demo') {
+    require APP_DIR . '/views/resume-demo.php';
     exit;
 }
 

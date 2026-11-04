@@ -13,7 +13,8 @@ Built with **plain PHP + MySQL**, with no framework and no Composer. It runs on 
 | `/` | Home |
 | `/about` | About Us, with the three founders |
 | `/services` | Services overview |
-| `/services/{slug}` | 8 service pages: website-development, mobile-app-development, ai-automation, custom-software, seo, social-media-marketing, paid-ads, graphic-design-branding |
+| `/services/{slug}` | 9 service pages: website-development, resume-website, mobile-app-development, ai-automation, custom-software, seo, social-media-marketing, paid-ads, graphic-design-branding |
+| `/resume-website-demo` | Sample resume website with a fictional person (hidden from Google) |
 | `/temple-solutions` | Temple digital solutions (the temple vertical) |
 | `/live-darshan-service` | Temple live darshan landing page, with a short Marathi section |
 | `/devasthan-live` | Maharashtra Devasthan Live, with the **Register Your Temple** form |
@@ -51,7 +52,7 @@ app/
   config.php              ← business details, phone, social links, stats (EDIT THIS)
   config.local.php        ← database + email passwords (create from the example; git-ignored)
   data/
-    services.php          ← 8 service pages content
+    services.php          ← 9 service pages content
     portfolio.php         ← case studies
     blog.php              ← blog posts
     testimonials.php      ← client reviews (currently samples)

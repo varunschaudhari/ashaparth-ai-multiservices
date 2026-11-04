@@ -52,9 +52,9 @@ $delays    = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
       <h2>Everything you need to build and grow, under one roof</h2>
       <p>Technology to build your business and marketing to grow it, delivered by one accountable team.</p>
     </div>
-    <div class="grid grid-4">
+    <div class="grid grid-3">
       <?php $i = 0; foreach (services() as $slug => $s): ?>
-        <article class="card card-hover service-card reveal <?= $delays[$i++ % 4] ?>">
+        <article class="card card-hover service-card reveal <?= $delays[$i++ % 3] ?>">
           <span class="tag-pill"><?= $s['category'] === 'build' ? 'Build' : 'Grow' ?></span>
           <div class="icon-box<?= $s['category'] === 'grow' ? ' maroon' : '' ?>"><?= icon($s['icon']) ?></div>
           <h3><a href="<?= e(url('services/' . $slug)) ?>"><?= e($s['title']) ?></a></h3>
@@ -63,6 +63,7 @@ $delays    = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
         </article>
       <?php endforeach; ?>
     </div>
+    <p class="text-center" style="margin:36px 0 0">Not sure which one you need? <a href="<?= e(url('services')) ?>"><strong>Find the right service</strong></a> or <a href="<?= e(whatsapp_url('Hello AshaParth AI, I am not sure which service I need. Can you help me?')) ?>" target="_blank" rel="noopener"><strong>ask us on WhatsApp</strong></a>.</p>
   </div>
 </section>
 
@@ -131,7 +132,7 @@ $delays    = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
       <h3>From Amalner to the world</h3>
       <p>We started with a simple belief: every business and every temple, whatever its size or location, deserves technology that truly works for it. Today we help businesses and temples build, automate and grow, and we work with clients anywhere in India and abroad.</p>
       <div class="mini-stats">
-        <div><b>8+</b><span>Digital services</span></div>
+        <div><b><?= count(services()) ?></b><span>Digital services</span></div>
         <div><b>24x7</b><span>Live darshan streaming</span></div>
         <div><b>India + Global</b><span>Remote-friendly delivery</span></div>
         <div><b>1 team</b><span>Build, launch &amp; grow</span></div>

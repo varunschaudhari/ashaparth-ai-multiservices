@@ -7,14 +7,22 @@ $others = array_filter(services(), fn ($k) => $k !== $slug, ARRAY_FILTER_USE_KEY
 uasort($others, fn ($a, $b) => ($b['category'] === $s['category']) <=> ($a['category'] === $s['category']));
 $related = !empty($s['related_post']) ? (data('blog')[$s['related_post']] ?? null) : null;
 
+$whatsapp = whatsapp_url($s['whatsapp_text'] ?? 'Hello AshaParth AI, I am interested in ' . $s['title'] . '.');
+$waButton = '<a class="btn btn-whatsapp" href="' . e($whatsapp) . '" target="_blank" rel="noopener">' . icon('whatsapp') . ' ' . e($s['cta_label'] ?? 'Discuss on WhatsApp') . '</a>';
+$quoteButton = '<a class="btn btn-primary" href="' . e(url('get-a-quote?service=' . rawurlencode($s['title']))) . '">' . icon('send') . ' Get a Free Quote</a>';
+$demoButton = !empty($s['demo'])
+    ? '<a class="btn btn-outline" href="' . e(url($s['demo'])) . '" target="_blank" rel="noopener">' . icon('eye') . ' See a Sample</a>'
+    : '';
+// Simple services start with a chat and a sample; bigger projects start with a quote.
+$actions = $demoButton !== '' ? $waButton . $demoButton : $quoteButton . $waButton;
+
 partial('page-hero', [
     'title'   => $s['h1'] ?? $s['title'],
     'text'    => $s['headline'],
     'crumbs'  => [['Services', 'services'], [$s['title'], 'services/' . $slug]],
     'eyebrow' => $s['category'] === 'build' ? 'Technology service' : 'Marketing & creative service',
     'icon'    => $s['icon'],
-    'actions' => '<a class="btn btn-primary" href="' . e(url('get-a-quote?service=' . rawurlencode($s['title']))) . '">' . icon('send') . ' Get a Free Quote</a>'
-               . '<a class="btn btn-whatsapp" href="' . e(whatsapp_url('Hello AshaParth AI, I am interested in ' . $s['title'] . '.')) . '" target="_blank" rel="noopener">' . icon('whatsapp') . ' Discuss on WhatsApp</a>',
+    'actions' => $actions,
 ]);
 ?>
 
@@ -38,8 +46,25 @@ partial('page-hero', [
   </div>
 </section>
 
-<!-- ── Features ──────────────────────────────────────────────────────── -->
+<!-- ── Is this for you? ──────────────────────────────────────────────── -->
+<?php if (!empty($s['best_for'])): ?>
 <section class="section section-soft">
+  <div class="container grid grid-2">
+    <div class="card reveal">
+      <h3><?= icon('person-check') ?> Is this right for you?</h3>
+      <ul class="check-list mb-0"><?php foreach ($s['best_for'] as $item): ?><li><?= e($item) ?></li><?php endforeach; ?></ul>
+    </div>
+    <div class="card reveal reveal-d1">
+      <h3><?= icon('clipboard-check') ?> What you need to start</h3>
+      <ul class="check-list gold"><?php foreach ($s['you_need'] as $item): ?><li><?= e($item) ?></li><?php endforeach; ?></ul>
+      <p class="mb-0" style="font-size:.93rem">Missing something? That’s fine. <a href="<?= e($whatsapp) ?>" target="_blank" rel="noopener"><strong>Message us</strong></a> and we will guide you.</p>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<!-- ── Features ──────────────────────────────────────────────────────── -->
+<section class="section">
   <div class="container">
     <div class="section-head center">
       <span class="eyebrow">Key features</span>
@@ -58,11 +83,11 @@ partial('page-hero', [
 </section>
 
 <!-- ── Process ───────────────────────────────────────────────────────── -->
-<section class="section">
+<section class="section section-soft">
   <div class="container">
     <div class="section-head center">
       <span class="eyebrow">Our process</span>
-      <h2>How we deliver <?= e(strtolower($s['title']) === 'seo' ? 'SEO' : $s['title']) ?></h2>
+      <h2>How it works</h2>
     </div>
     <div class="process">
       <?php foreach ($s['process'] as $k => [$t, $d]): ?>
@@ -73,7 +98,7 @@ partial('page-hero', [
 </section>
 
 <!-- ── Tools ─────────────────────────────────────────────────────────── -->
-<section class="section-sm section-soft">
+<section class="section-sm">
   <div class="container text-center">
     <span class="eyebrow">Tools &amp; technologies</span>
     <div class="chips" style="justify-content:center;margin-top:10px">
@@ -83,7 +108,7 @@ partial('page-hero', [
 </section>
 
 <!-- ── FAQ ───────────────────────────────────────────────────────────── -->
-<section class="section">
+<section class="section section-soft">
   <div class="container container-narrow">
     <div class="section-head center">
       <span class="eyebrow">FAQ</span>
@@ -94,8 +119,8 @@ partial('page-hero', [
 </section>
 
 <?php partial('cta', [
-    'title' => 'Let’s talk about your ' . (strtolower($s['title']) === 'seo' ? 'SEO' : strtolower($s['title'])) . ' project',
-    'text'  => 'Share your requirements and get a free consultation and quote within 24 working hours.',
+    'title' => $s['cta_title'] ?? 'Ready to get started?',
+    'text'  => $s['cta_text'] ?? 'Share your requirements and get a free consultation and quote within 24 working hours.',
 ]); ?>
 
 <!-- ── Other services ────────────────────────────────────────────────── -->
