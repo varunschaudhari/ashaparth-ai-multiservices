@@ -2,7 +2,7 @@
 defined('APP_ROOT') || exit;
 
 $siteName  = config('name');
-$pageTitle = $meta['title'] !== '' ? $meta['title'] . ' | ' . $siteName : $siteName . ' | ' . config('tagline');
+$pageTitle = $meta['title'] !== '' ? $meta['title'] . ' | ' . config('short_name') : config('home_title');
 $canonical = absolute_url($meta['canonical']);
 $ogImage   = absolute_url('assets/' . ltrim($meta['og_image'], '/'));
 $a         = config('address');
@@ -31,7 +31,8 @@ $orgSchema = [
         'opens'     => '10:00',
         'closes'    => '19:00',
     ]],
-    'areaServed'  => ['India', 'Worldwide'],
+    'areaServed'  => ['Jalgaon district', 'Maharashtra', 'India', 'Worldwide'],
+    'hasMap'      => map_link_url(),
     'founder'     => array_map(fn ($f) => ['@type' => 'Person', 'name' => $f['name']], config('founders', [])),
 ];
 $sameAs = array_values(array_filter(array_column(social_links(), 'href'), fn ($h) => $h !== '#'));
@@ -42,6 +43,7 @@ $schemas = array_merge([$orgSchema], $meta['schema']);
 
 $templeNav = [
     ['temple-solutions', 'Temple Solutions', 'Live darshan, websites, apps & donations', 'bank'],
+    ['live-darshan-service', 'Live Darshan Service', 'HD streaming for your temple', 'camera-video'],
     ['devasthan-live', 'Maharashtra Devasthan Live', 'Connecting all temples of Maharashtra', 'broadcast'],
 ];
 ?>
@@ -73,7 +75,9 @@ $templeNav = [
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript>
 <link rel="stylesheet" href="<?= e(asset('css/style.css')) ?>">
 
 <?php foreach ($schemas as $schema): ?>
@@ -132,7 +136,7 @@ $templeNav = [
         </li>
 
         <li class="nav-item has-dropdown">
-          <button class="nav-link<?= (is_active('temple-solutions') || is_active('devasthan-live')) ? ' active' : '' ?>" type="button" aria-expanded="false" aria-haspopup="true">Temples <?= icon('chevron-down') ?></button>
+          <button class="nav-link<?= (is_active('temple-solutions') || is_active('live-darshan-service') || is_active('devasthan-live')) ? ' active' : '' ?>" type="button" aria-expanded="false" aria-haspopup="true">Temples <?= icon('chevron-down') ?></button>
           <div class="dropdown">
             <?php foreach ($templeNav as [$slug, $title, $sub, $ic]): ?>
               <a href="<?= e(url($slug)) ?>"><?= icon($ic) ?><span><strong><?= e($title) ?></strong><small><?= e($sub) ?></small></span></a>

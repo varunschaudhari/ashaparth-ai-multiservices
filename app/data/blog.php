@@ -42,7 +42,7 @@ return [
 <p>With the right setup, the stream can run 24x7 or follow the temple’s aarti schedule automatically.</p>
 
 <h2>How AshaParth AI helps</h2>
-<p>Through our <a href="/temple-solutions">Temple Solutions</a> and the <a href="/devasthan-live">Maharashtra Devasthan Live</a> initiative, we provide the complete package: HD camera setup, 24x7 live streaming, temple websites and apps, online donations and social media management. Temple trustees can register their temple and our team will guide them through every step.</p>
+<p>Through our <a href="/temple-solutions">Temple Solutions</a> and the <a href="/devasthan-live">Maharashtra Devasthan Live</a> initiative, we provide the complete package: HD camera setup, <a href="/live-darshan-service">24x7 live darshan streaming</a>, temple websites and apps, online donations and social media management. Temple trustees can register their temple and our team will guide them through every step.</p>
 HTML,
     ],
 
@@ -84,6 +84,7 @@ HTML,
 
     'how-ai-chatbots-help-small-businesses' => [
         'title'    => 'How AI Chatbots Help Small Businesses Save Time',
+        'seo_title' => 'How AI Chatbots Help Small Businesses',
         'date'     => '2026-10-12',
         'category' => 'AI & Automation',
         'icon'     => 'robot',
@@ -117,6 +118,7 @@ HTML,
 
     'local-seo-get-found-on-google-maps' => [
         'title'    => 'Local SEO: How to Get Your Business Found on Google Maps',
+        'seo_title' => 'Local SEO: Get Found on Google Maps',
         'date'     => '2026-10-05',
         'category' => 'SEO',
         'icon'     => 'geo-alt',

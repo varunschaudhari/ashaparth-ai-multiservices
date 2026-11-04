@@ -17,12 +17,15 @@ return [
     'legal_name'   => 'AshaParth AI Multiservices',
     'legal_type'   => 'Proprietorship',
     'tagline'      => 'Smart Digital Solutions That Grow Your Business',
-    'description'  => 'AshaParth AI Multiservices is a digital agency in Amalner, Jalgaon offering website development, mobile apps, AI automation, custom software, SEO, social media, paid ads, branding and complete temple digitisation, including 24x7 live darshan.',
+    'home_title'   => 'Website & App Development Company in Jalgaon | AshaParth AI',
+    'description'  => 'Digital agency in Amalner, Jalgaon: websites, mobile apps, AI automation, software, SEO, social media and temple live darshan. Get a free quote.',
     'founded_year' => 'XXXX', // TODO: year the business started
     'gst_number'   => '',     // Leave empty to hide. Example: '27ABCDE1234F1Z5'
 
-    // Full public URL without trailing slash, e.g. 'https://www.ashaparth.in'.
+    // Full public URL without trailing slash, e.g. 'https://www.yourdomain.com'.
     // Leave empty to auto-detect from the current request.
+    // Once set, every visitor is redirected to this exact address, which gives
+    // Google one version of each page. Activate SSL first if it starts with https.
     'site_url' => '',
 
     // ── Contact ─────────────────────────────────────────────────────────

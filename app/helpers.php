@@ -68,6 +68,28 @@ function asset(string $path): string
     return url('assets/' . $path) . $ver;
 }
 
+/**
+ * Redirect to the address in config('site_url') so Google sees one version of
+ * each page (https only, www or non-www). Does nothing until site_url is set.
+ */
+function enforce_canonical_host(): void
+{
+    $want = parse_url((string) config('site_url', ''));
+    if (empty($want['host']) || PHP_SAPI === 'cli-server') {
+        return;
+    }
+    if (!in_array($_SERVER['REQUEST_METHOD'] ?? 'GET', ['GET', 'HEAD'], true)) {
+        return; // never redirect a form submission
+    }
+    $wantHost = strtolower($want['host'] . (isset($want['port']) ? ':' . $want['port'] : ''));
+    $wantScheme = $want['scheme'] ?? 'https';
+    if (strtolower($_SERVER['HTTP_HOST'] ?? '') === $wantHost && (is_https() ? 'https' : 'http') === $wantScheme) {
+        return;
+    }
+    header('Location: ' . $wantScheme . '://' . $wantHost . ($_SERVER['REQUEST_URI'] ?? '/'), true, 301);
+    exit;
+}
+
 /** scheme://host with no trailing slash. */
 function site_origin(): string
 {
@@ -215,6 +237,20 @@ function not_found(): void
 {
     render('404', [], ['title' => 'Page Not Found', 'noindex' => true], 404);
     exit;
+}
+
+/** BreadcrumbList structured data. $crumbs = [[label, path], ...] without Home. */
+function breadcrumb_schema(array $crumbs): string
+{
+    if (!$crumbs) {
+        return '';
+    }
+    $list = [];
+    foreach (array_merge([['Home', '']], $crumbs) as $i => [$label, $path]) {
+        $list[] = ['@type' => 'ListItem', 'position' => $i + 1, 'name' => $label, 'item' => absolute_url($path)];
+    }
+    $schema = ['@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => $list];
+    return '<script type="application/ld+json">' . json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) . '</script>';
 }
 
 // ── Data ────────────────────────────────────────────────────────────────

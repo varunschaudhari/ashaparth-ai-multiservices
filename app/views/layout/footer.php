@@ -34,6 +34,7 @@
       <ul class="footer-links">
         <li><a href="<?= e(url('about')) ?>">About Us</a></li>
         <li><a href="<?= e(url('temple-solutions')) ?>">Temple Solutions</a></li>
+        <li><a href="<?= e(url('live-darshan-service')) ?>">Live Darshan Service</a></li>
         <li><a href="<?= e(url('devasthan-live')) ?>">Devasthan Live</a></li>
         <li><a href="<?= e(url('portfolio')) ?>">Portfolio</a></li>
         <li><a href="<?= e(url('blog')) ?>">Blog</a></li>

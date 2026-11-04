@@ -2,7 +2,7 @@
 defined('APP_ROOT') || exit;
 $delays = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
 partial('page-hero', [
-    'title'   => 'Our Services',
+    'title'   => 'Website, App & Marketing Services in Jalgaon',
     'text'    => 'Technology to build your business and marketing to grow it, delivered by one accountable team.',
     'crumbs'  => [['Services', 'services']],
     'eyebrow' => 'What we do',

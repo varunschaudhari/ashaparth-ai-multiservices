@@ -4,9 +4,11 @@ defined('APP_ROOT') || exit;
 $s      = $service;
 $delays = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
 $others = array_filter(services(), fn ($k) => $k !== $slug, ARRAY_FILTER_USE_KEY);
+uasort($others, fn ($a, $b) => ($b['category'] === $s['category']) <=> ($a['category'] === $s['category']));
+$related = !empty($s['related_post']) ? (data('blog')[$s['related_post']] ?? null) : null;
 
 partial('page-hero', [
-    'title'   => $s['title'],
+    'title'   => $s['h1'] ?? $s['title'],
     'text'    => $s['headline'],
     'crumbs'  => [['Services', 'services'], [$s['title'], 'services/' . $slug]],
     'eyebrow' => $s['category'] === 'build' ? 'Technology service' : 'Marketing & creative service',
@@ -23,6 +25,11 @@ partial('page-hero', [
       <span class="eyebrow">Overview</span>
       <h2><?= e($s['headline']) ?></h2>
       <p class="lead"><?= e($s['intro']) ?></p>
+      <h3 style="margin-top:28px"><?= e($s['title']) ?> in Jalgaon and Amalner</h3>
+      <p><?= e($s['local']) ?></p>
+      <?php if ($related): ?>
+        <p class="mb-0">Related reading: <a href="<?= e(url('blog/' . $s['related_post'])) ?>"><strong><?= e($related['title']) ?></strong></a></p>
+      <?php endif; ?>
     </div>
     <div class="card reveal reveal-d2" style="background:var(--bg-soft)">
       <h3><?= icon('list-check') ?> What we offer</h3>

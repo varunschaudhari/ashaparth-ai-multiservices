@@ -11,8 +11,8 @@ $delays    = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
   <div class="container split">
     <div>
       <div class="hero-badge"><span>NEW</span> Maharashtra Devasthan Live: temples going digital</div>
-      <h1>Smart digital solutions that <span class="hl">grow</span> your business</h1>
-      <p class="hero-text">From websites and mobile apps to AI automation, custom software and digital marketing, <?= e(config('name')) ?> is your complete technology partner. Based in Amalner, working with clients across India and worldwide.</p>
+      <h1>Website, app &amp; AI company in Jalgaon that helps you <span class="hl">grow</span></h1>
+      <p class="hero-text">From websites and mobile apps to AI automation, custom software and digital marketing, <?= e(config('name')) ?> is your complete technology partner. Based in Amalner, Jalgaon district, and working with clients across Maharashtra, India and worldwide.</p>
       <div class="hero-actions">
         <a class="btn btn-primary btn-lg" href="<?= e(url('get-a-quote')) ?>"><?= icon('send') ?> Get a Free Quote</a>
         <a class="btn btn-outline btn-lg" href="<?= e(url('services')) ?>">Explore Services <?= icon('arrow-right') ?></a>
@@ -85,7 +85,7 @@ $delays    = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
         </div>
         <div class="temple-services">
           <?php foreach ([
-              ['broadcast', '24x7 Live Darshan'],
+              ['broadcast', '24x7 Live Darshan', 'live-darshan-service'],
               ['camera-video', 'HD Camera Setup'],
               ['globe2', 'Temple Websites'],
               ['phone', 'Temple Mobile Apps'],
@@ -93,8 +93,12 @@ $delays    = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
               ['calendar-event', 'Event Promotion'],
               ['share', 'Social Media Management'],
               ['boxes', 'Temple Management Software'],
-          ] as [$ic, $label]): ?>
-            <div class="temple-service"><?= icon($ic) ?> <?= e($label) ?></div>
+          ] as $tile): [$ic, $label] = $tile; ?>
+            <?php if (isset($tile[2])): ?>
+              <a class="temple-service" href="<?= e(url($tile[2])) ?>"><?= icon($ic) ?> <?= e($label) ?></a>
+            <?php else: ?>
+              <div class="temple-service"><?= icon($ic) ?> <?= e($label) ?></div>
+            <?php endif; ?>
           <?php endforeach; ?>
         </div>
       </div>

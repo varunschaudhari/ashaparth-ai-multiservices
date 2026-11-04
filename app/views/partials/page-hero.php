@@ -8,6 +8,7 @@ defined('APP_ROOT') || exit;
 $crumbs  = $crumbs ?? [];
 $variant = $variant ?? '';
 ?>
+<?= breadcrumb_schema($crumbs) ?>
 <section class="page-hero <?= e($variant) ?>">
   <div class="container page-hero-inner">
     <div>

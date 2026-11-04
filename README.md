@@ -15,6 +15,7 @@ Built with **plain PHP + MySQL**, with no framework and no Composer. It runs on 
 | `/services` | Services overview |
 | `/services/{slug}` | 8 service pages: website-development, mobile-app-development, ai-automation, custom-software, seo, social-media-marketing, paid-ads, graphic-design-branding |
 | `/temple-solutions` | Temple digital solutions (the temple vertical) |
+| `/live-darshan-service` | Temple live darshan landing page, with a short Marathi section |
 | `/devasthan-live` | Maharashtra Devasthan Live, with the **Register Your Temple** form |
 | `/portfolio`, `/portfolio/{slug}` | Portfolio and case studies |
 | `/blog`, `/blog/{slug}` | Blog |
@@ -103,10 +104,10 @@ The site also works inside a sub-folder, e.g. `C:\xampp\htdocs\ashaparth\` at ht
    - The `db` name, user and password from step 3.
    - The `mail` settings. **Option A, Gmail (simplest):** turn on 2-Step Verification on the Google account, create an *App Password* at https://myaccount.google.com/apppasswords and paste it as `password`. Use host `smtp.gmail.com`, port `587`, encryption `tls`. **Option B, domain email:** create a mailbox like `info@yourdomain.com` in cPanel > *Email Accounts*, then use host `mail.yourdomain.com`, port `465`, encryption `ssl`.
 5. **Permissions**: `storage/uploads/` and `storage/logs/` must be writable (755 normally works on cPanel).
-6. **SSL**: enable free SSL in cPanel > *SSL/TLS Status* (AutoSSL). Then uncomment the two HTTPS lines at the top of `.htaccess`.
-7. **Domain**: set `'site_url' => 'https://www.yourdomain.com'` in `app/config.php`.
+6. **SSL**: enable free SSL in cPanel > *SSL/TLS Status* (AutoSSL) and check that `https://` opens your site.
+7. **Domain**: only after SSL works, set `'site_url' => 'https://www.yourdomain.com'` in `app/config.php`. All visitors are then redirected to that exact address (https, and www or non-www as you chose), so Google sees one version of each page. You do not need the commented HTTPS lines in `.htaccess`.
 8. **Test**: submit each form once and check that the emails arrive and that the rows appear in phpMyAdmin.
-9. **Google**: add the site to Google Search Console and submit `https://yourdomain.com/sitemap.xml`. Also add the website link to your Google Business Profile.
+9. **Google**: add the site to Google Search Console and submit `https://yourdomain.com/sitemap.xml`. Create or claim your Google Business Profile, use the same business name, address and phone as the website, and link it to the site.
 
 ---
 
@@ -136,6 +137,9 @@ The site also works inside a sub-folder, e.g. `C:\xampp\htdocs\ashaparth\` at ht
 - [ ] **Technologies list**: `app/config.php` > `technologies`. Check that it matches the tools you actually use.
 - [ ] **About Us story**: review the text in `app/views/pages/about.php`.
 - [ ] **GST number** (optional): `app/config.php` > `gst_number`.
+- [ ] **Blog dates**: set each post's `date` in `app/data/blog.php` to the day it really goes live.
+- [ ] **Marathi text**: have a Marathi speaker check the section on `/live-darshan-service`.
+- [ ] **Local wording**: check the "in Jalgaon and Amalner" paragraph (`local`) on each service in `app/data/services.php`.
 - [ ] **Privacy Policy and Terms**: these are general templates. Have them reviewed for your business.
 
 ## Review copy on GitHub Pages

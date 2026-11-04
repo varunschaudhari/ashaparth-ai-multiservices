@@ -5,7 +5,7 @@ $portfolio = data('portfolio');
 $templeWork = array_filter($portfolio, fn ($p) => !$p['is_sample'] && strpos($p['client'], 'Mangal') !== false);
 
 partial('page-hero', [
-    'title'   => 'Temple Digital Solutions',
+    'title'   => 'Temple Websites, Apps & Live Darshan Services',
     'text'    => 'An all-in-one digital solution for temples and trusts: 24x7 live darshan, HD camera setup, temple websites and apps, online donations, pooja booking and social media.',
     'crumbs'  => [['Temple Solutions', 'temple-solutions']],
     'eyebrow' => 'Go digital: connect your temple to the world',
@@ -92,7 +92,8 @@ $services = [
   <div class="container split">
     <div class="media-panel reveal">
       <h3><?= icon('broadcast') ?> 24x7 Live Temple Darshan Service</h3>
-      <p>Our most-requested temple service. We take care of everything from camera installation to streaming, so the temple simply goes live.</p>
+      <p>We take care of everything from camera installation to streaming, so the temple simply goes live.</p>
+      <a class="btn btn-light btn-sm" href="<?= e(url('live-darshan-service')) ?>">Live darshan service details <?= icon('arrow-right') ?></a>
       <div class="mini-stats">
         <div><b>Daily Aarti</b><span>Live every day</span></div>
         <div><b>Festivals</b><span>Special live coverage</span></div>

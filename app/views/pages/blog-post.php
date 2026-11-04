@@ -6,6 +6,7 @@ $others   = array_slice(array_filter(data('blog'), fn ($k) => $k !== $slug, ARRA
 // Root-relative links in post bodies must respect a sub-folder install.
 $body = str_replace('href="/', 'href="' . base_path() . '/', $post['body']);
 ?>
+<?= breadcrumb_schema([['Blog', 'blog'], [$post['title'], 'blog/' . $slug]]) ?>
 <section class="page-hero">
   <div class="container">
     <div class="article-header">

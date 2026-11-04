@@ -13,6 +13,8 @@ return [
 
     'mangal-grah-mandir-website' => [
         'title'    => 'Shri Mangal Grah Mandir: Temple Website',
+        'seo_title' => 'Shri Mangal Grah Mandir Website Case Study',
+        'meta_description' => 'Temple website for Shri Mangal Grah Mandir, Amalner, with live darshan, online abhishek registration, Razorpay payments and donations.',
         'client'   => 'Shri Mangal Grah Seva Sanstha',
         'location' => 'Amalner, Jalgaon, Maharashtra',
         'category' => 'Temple Solutions',
@@ -46,6 +48,8 @@ return [
 
     'mangal-grah-mandir-management-app' => [
         'title'    => 'Temple Management & Stock App',
+        'seo_title' => 'Temple Management App Case Study',
+        'meta_description' => 'Mobile-first temple management app covering stock, purchases, suppliers, donations, seva bookings, assets, staff and WhatsApp messaging.',
         'client'   => 'Shri Mangal Grah Mandir',
         'location' => 'Amalner, Jalgaon, Maharashtra',
         'category' => 'Custom Software',
@@ -82,6 +86,7 @@ return [
 
     'mangal-grah-mandir-live-darshan' => [
         'title'    => 'Live Darshan & Social Media',
+        'seo_title' => 'Temple Live Darshan Case Study, Amalner',
         'client'   => 'Shri Mangal Dev Graha Mandir',
         'location' => 'Amalner, Jalgaon, Maharashtra',
         'category' => 'Temple Solutions',

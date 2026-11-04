@@ -17,6 +17,8 @@ if (PHP_SAPI === 'cli-server') {
 
 require __DIR__ . '/app/bootstrap.php';
 
+enforce_canonical_host();
+
 $path   = current_path();
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
@@ -24,14 +26,23 @@ $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 // path => [view, meta, POST handler]
 $routes = [
     ''                     => ['home', ['title' => '', 'description' => config('description')]],
-    'about'                => ['about', ['title' => 'About Us', 'description' => 'Meet the founders of AshaParth AI Multiservices, a digital agency from Amalner, Jalgaon helping businesses and temples grow with technology.']],
-    'services'             => ['services', ['title' => 'Our Services', 'description' => 'Website development, mobile apps, AI & automation, custom software, SEO, social media marketing, paid ads and graphic design, all under one roof.']],
-    'temple-solutions'     => ['temple-solutions', ['title' => 'Temple Digital Solutions: Live Darshan, Websites & Apps', 'description' => 'Complete digital solutions for temples: 24x7 live darshan, HD camera setup, temple websites, mobile apps, online donations, pooja booking and social media.']],
-    'devasthan-live'       => ['devasthan-live', ['title' => 'Maharashtra Devasthan Live: Register Your Temple', 'description' => 'Maharashtra Devasthan Live connects temples across Maharashtra digitally with live darshan, temple information and global devotee reach. Register your temple today.'], 'handle_temple_form'],
+    'about'                => ['about', ['title' => 'About Our Digital Agency in Amalner, Jalgaon', 'description' => 'Meet the founders of AshaParth AI Multiservices, a digital agency from Amalner, Jalgaon helping businesses and temples grow with technology.']],
+    'services'             => ['services', ['title' => 'Digital Services in Jalgaon & Maharashtra', 'description' => 'Website development, mobile apps, AI & automation, custom software, SEO, social media marketing, paid ads and graphic design, all under one roof.']],
+    'temple-solutions'     => ['temple-solutions', ['title' => 'Temple Websites, Apps & Live Darshan Services', 'description' => 'Complete digital solutions for temples: 24x7 live darshan, HD camera setup, temple websites, mobile apps, online donations, pooja booking and social media.']],
+    'live-darshan-service' => ['live-darshan-service', ['title' => 'Temple Live Darshan Service in Maharashtra', 'description' => 'HD live darshan for temples across Maharashtra: camera setup, 24x7 or aarti-time streaming on YouTube and your website, with full support.', 'schema' => [[
+        '@context'    => 'https://schema.org',
+        '@type'       => 'Service',
+        'name'        => 'Temple Live Darshan Service',
+        'serviceType' => 'Live streaming for temples',
+        'description' => 'HD live darshan setup and streaming for temples across Maharashtra.',
+        'provider'    => ['@type' => 'Organization', 'name' => config('name'), 'url' => absolute_url()],
+        'areaServed'  => 'Maharashtra',
+    ]]]],
+    'devasthan-live'       => ['devasthan-live', ['title' => 'Maharashtra Devasthan Live: Register Temple', 'description' => 'Maharashtra Devasthan Live connects temples across Maharashtra with live darshan, temple information and devotees worldwide. Register your temple.'], 'handle_temple_form'],
     'portfolio'            => ['portfolio', ['title' => 'Portfolio & Case Studies', 'description' => 'Selected projects by AshaParth AI Multiservices: temple websites, temple management software, live darshan, business websites and apps.']],
     'blog'                 => ['blog', ['title' => 'Blog: Digital Growth Insights', 'description' => 'Practical articles on websites, AI, SEO, social media and temple digitisation from the AshaParth AI team.']],
     'careers'              => ['careers', ['title' => 'Careers', 'description' => 'Work with AshaParth AI Multiservices. Send us your resume for developer, designer, marketing and live-streaming roles.'], 'handle_career_form'],
-    'contact'              => ['contact', ['title' => 'Contact Us', 'description' => 'Contact AshaParth AI Multiservices, Vivekanand Tower, Amalner, Jalgaon. Call or WhatsApp +91 99239 33355.'], 'handle_contact_form'],
+    'contact'              => ['contact', ['title' => 'Contact Us: Amalner, Jalgaon', 'description' => 'Contact AshaParth AI Multiservices, Vivekanand Tower, Amalner, Jalgaon. Call or WhatsApp +91 99239 33355.'], 'handle_contact_form'],
     'get-a-quote'          => ['quote', ['title' => 'Get a Free Quote', 'description' => 'Tell us about your project and get a free, no-obligation quote for websites, apps, AI, software, marketing or temple solutions.'], 'handle_quote_form'],
     'privacy-policy'       => ['privacy', ['title' => 'Privacy Policy', 'description' => 'How AshaParth AI Multiservices collects, uses and protects information submitted through this website.']],
     'terms-and-conditions' => ['terms', ['title' => 'Terms & Conditions', 'description' => 'Terms and conditions for using the AshaParth AI Multiservices website and services.']],
@@ -90,8 +101,9 @@ if (preg_match('~^portfolio/([a-z0-9-]+)$~', $path, $m)) {
         not_found();
     }
     render('portfolio-detail', ['project' => $project, 'slug' => $m[1]], [
-        'title'       => $project['title'] . ' – Case Study',
-        'description' => $project['summary'],
+        'title'       => $project['seo_title'] ?? $project['title'] . ' – Case Study',
+        'description' => $project['meta_description'] ?? $project['summary'],
+        'noindex'     => $project['is_sample'],
         'og_image'    => $project['image'] ?? 'img/og-image.png',
     ]);
     exit;
@@ -103,7 +115,7 @@ if (preg_match('~^blog/([a-z0-9-]+)$~', $path, $m)) {
         not_found();
     }
     render('blog-post', ['post' => $post, 'slug' => $m[1]], [
-        'title'       => $post['title'],
+        'title'       => $post['seo_title'] ?? $post['title'],
         'description' => $post['excerpt'],
         'schema'      => [[
             '@context'      => 'https://schema.org',
@@ -111,6 +123,7 @@ if (preg_match('~^blog/([a-z0-9-]+)$~', $path, $m)) {
             'headline'      => $post['title'],
             'description'   => $post['excerpt'],
             'datePublished' => $post['date'],
+            'image'         => absolute_url('assets/img/og-image.png'),
             'author'        => ['@type' => 'Organization', 'name' => config('name')],
             'publisher'     => ['@type' => 'Organization', 'name' => config('name')],
             'mainEntityOfPage' => absolute_url('blog/' . $m[1]),
