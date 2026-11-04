@@ -132,8 +132,8 @@ $delays    = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
       <h3>From Amalner to the world</h3>
       <p>We started with a simple belief: every business and every temple, whatever its size or location, deserves technology that truly works for it. Today we help businesses and temples build, automate and grow, and we work with clients anywhere in India and abroad.</p>
       <div class="mini-stats">
-        <div><b><?= count(services()) ?></b><span>Digital services</span></div>
-        <div><b>24x7</b><span>Live darshan streaming</span></div>
+        <div><b>Free</b><span>First consultation</span></div>
+        <div><b>Written</b><span>Quotes with no hidden costs</span></div>
         <div><b>India + Global</b><span>Remote-friendly delivery</span></div>
         <div><b>1 team</b><span>Build, launch &amp; grow</span></div>
       </div>

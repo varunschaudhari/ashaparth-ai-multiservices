@@ -15,7 +15,7 @@ mb_internal_encoding('UTF-8');
 $siteConfig  = require APP_DIR . '/config.php';
 $localConfig = is_file(APP_DIR . '/config.local.php') ? require APP_DIR . '/config.local.php' : [];
 $GLOBALS['__config'] = array_replace_recursive(
-    ['env' => 'production', 'db' => [], 'mail' => ['driver' => 'log']],
+    ['env' => 'production', 'db' => [], 'mail' => ['driver' => 'mail']],
     $siteConfig,
     is_array($localConfig) ? $localConfig : []
 );

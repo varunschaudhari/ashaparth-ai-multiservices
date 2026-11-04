@@ -48,13 +48,13 @@ return [
     // Google Maps search used for the embedded map and "Get directions" link
     'map_query' => 'Vivekanand Tower, Amalner, Jalgaon, Maharashtra 425401',
 
-    // ── Social media ── TODO: replace '#' with real profile URLs ───────
-    // Set a value to '' to hide that icon everywhere.
+    // ── Social media ────────────────────────────────────────────────────
+    // Add full profile URLs here. Icons stay hidden while a value is empty.
     'social' => [
-        'youtube'   => '#',
-        'facebook'  => '#',
-        'instagram' => '#',
-        'linkedin'  => '#',
+        'youtube'   => '',
+        'facebook'  => '',
+        'instagram' => '',
+        'linkedin'  => '',
     ],
 
     // ── Founders ── (shown on About page) ───────────────────────────────
@@ -64,28 +64,29 @@ return [
             'name'  => 'Ashish Chaudhari',
             'role'  => 'Founder',
             'photo' => '',
-            'bio'   => '', // TODO: 1–2 line bio (leave empty to show a generic line)
+            'bio'   => 'Founder of AshaParth AI Multiservices and the contact for temple trusts joining Maharashtra Devasthan Live.',
         ],
         [
             'name'  => 'Vishakha Chaudhari',
             'role'  => 'Founder',
             'photo' => '',
-            'bio'   => '', // TODO: 1–2 line bio (leave empty to show a generic line)
+            'bio'   => 'Founder of AshaParth AI Multiservices, helping businesses and temples in Maharashtra go digital.',
         ],
         [
             'name'  => 'Priya Chaudhari',
             'role'  => 'Founder',
             'photo' => '',
-            'bio'   => '', // TODO: 1–2 line bio (leave empty to show a generic line)
+            'bio'   => 'Founder of AshaParth AI Multiservices, focused on practical technology that truly works for its users.',
         ],
     ],
 
-    // ── Home page stats ── TODO: replace XX with real numbers ──────────
+    // ── Home page stats ─────────────────────────────────────────────────
+    // Only use numbers you can back up. Add client and project totals once counted.
     'stats' => [
-        ['value' => 'XX+', 'label' => 'Projects Delivered'],
-        ['value' => 'XX+', 'label' => 'Happy Clients'],
-        ['value' => 'XX+', 'label' => 'Temples Connected'],
-        ['value' => 'XX+', 'label' => 'Years of Experience'],
+        ['value' => '3', 'label' => 'Temple Projects Delivered'],
+        ['value' => '9', 'label' => 'Digital Services'],
+        ['value' => '36', 'label' => 'Maharashtra Districts Covered'],
+        ['value' => '24x7', 'label' => 'Live Darshan Streaming'],
     ],
 
     // ── Technologies we work with ── TODO: edit to match your real stack ─
@@ -95,8 +96,9 @@ return [
         'YouTube Live', 'WhatsApp Business API', 'Google Ads', 'Meta Ads', 'Figma', 'Canva',
     ],
 
-    // Show the testimonials section (currently sample entries in app/data/testimonials.php)
-    'show_testimonials' => true,
+    // Hidden until real reviews are added to app/data/testimonials.php.
+    // Only publish genuine reviews, with the client's permission.
+    'show_testimonials' => false,
 
     // ── Forms ───────────────────────────────────────────────────────────
     'forms' => [

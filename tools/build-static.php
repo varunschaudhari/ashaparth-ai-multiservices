@@ -117,7 +117,7 @@ function to_review_copy(string $html): string
         . '.review-bar{background:#1a1f2b;color:#f6c77c;font-size:.85rem;font-weight:600;text-align:center;padding:9px 16px;line-height:1.4}'
         . '.review-note{background:#fffbeb;border:1px solid #fde68a;color:#78350f}'
         . '</style>';
-    $bar = '<div class="review-bar" role="status">Review copy. Forms are switched off, and anything marked Sample or XX is a placeholder.</div>';
+    $bar = '<div class="review-bar" role="status">Review copy. Forms are switched off on this version.</div>';
     $html = str_replace('</head>', $style . "\n</head>", $html);
     return preg_replace('~(<body\b[^>]*>)~', '$1' . "\n" . $bar, $html, 1);
 }

@@ -96,7 +96,8 @@ The site also works inside a sub-folder, e.g. `C:\xampp\htdocs\ashaparth\` at ht
 ## Deploy to AquaHost (cPanel)
 
 1. **PHP version**: in cPanel > *Select PHP Version* (or *MultiPHP Manager*), choose **PHP 8.1 or newer** (tested on PHP 8.2). Make sure the `pdo_mysql`, `mbstring`, `fileinfo` and `openssl` extensions are enabled.
-2. **Upload files**: upload everything in this folder into `public_html/`. You can skip `.git/` and `README.md`. Make sure `.htaccess` is uploaded; it is a hidden file.
+2. **Upload files**: on your computer run `C:
+mpp\php\php.exe tools\package-deploy.php`. In cPanel > *File Manager*, open `public_html/`, upload `ashaparth-upload.zip`, right-click it, choose *Extract*, then delete the zip. To update the site later, do the same; your server settings are not touched.
 3. **Database**: in cPanel > *MySQL Databases*:
    - Create a database (e.g. `cpuser_ashaparth`) and a user with a strong password.
    - Add the user to the database with **All Privileges**.
@@ -128,12 +129,11 @@ The site also works inside a sub-folder, e.g. `C:\xampp\htdocs\ashaparth\` at ht
 
 ## Placeholders to replace before launch
 
-- [ ] **Social media URLs**: `app/config.php` > `social` (currently `#`). Set any you don't use to `''` to hide it.
-- [ ] **Stats** (Projects, Clients, Temples, Years): `app/config.php` > `stats` (currently `XX+`).
-- [ ] **Founded year**: `app/config.php` > `founded_year`.
+- [ ] **Social media URLs**: add real links in `app/config.php` > `social`. Icons stay hidden until a link is set.
+- [ ] **Stats**: `app/config.php` > `stats` shows facts we can back up. Add client and project totals once you have real counts.
 - [ ] **Founder photos and bios**: `app/config.php` > `founders`. Put photos in `assets/img/team/`.
-- [ ] **Testimonials**: replace the 3 samples in `app/data/testimonials.php`, or set `show_testimonials` to `false`.
-- [ ] **Sample portfolio entries**: replace or delete the 3 `sample-*` entries in `app/data/portfolio.php`.
+- [ ] **Testimonials**: this section is hidden. Add genuine client reviews (with permission) to `app/data/testimonials.php`, then set `show_testimonials` to `true`.
+- [ ] **More portfolio projects**: add real projects to `app/data/portfolio.php` as you complete them.
 - [ ] **Portfolio screenshots**: save a screenshot of mangalagrahmandir.in as `assets/img/portfolio/mangal-grah-mandir-website.jpg`. An illustrated cover is shown until then. For the other projects, set `'image' => 'img/portfolio/your-file.jpg'`.
 - [ ] **Technologies list**: `app/config.php` > `technologies`. Check that it matches the tools you actually use.
 - [ ] **About Us story**: review the text in `app/views/pages/about.php`.
