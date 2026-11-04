@@ -1,0 +1,18 @@
+# Secrets & environment
+app/config.local.php
+
+# Runtime data (keep folders, ignore contents)
+storage/uploads/*
+!storage/uploads/.gitkeep
+storage/logs/*
+!storage/logs/.gitkeep
+!storage/.htaccess
+
+# Static review build (see tools/build-static.php)
+dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
