@@ -26,7 +26,7 @@ return [
     // Leave empty to auto-detect from the current request.
     // Once set, every visitor is redirected to this exact address, which gives
     // Google one version of each page. Activate SSL first if it starts with https.
-    'site_url' => '',
+    'site_url' => 'https://www.ashaparth.com',
 
     // ── Contact ─────────────────────────────────────────────────────────
     'phone'         => '+91 99239 33355',

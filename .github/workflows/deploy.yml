@@ -1,0 +1,131 @@
+# Tests the site on every push to main, then uploads changed files to AquaHost.
+# If any test fails, nothing is uploaded.
+#
+# Needs three repository secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD.
+# The FTP account must be locked to public_html (see README.md).
+#
+# Server-only files are safe: app/config.local.php, storage/logs, storage/uploads,
+# .user.ini, php.ini, .well-known and cgi-bin are never sent, changed or deleted.
+
+name: Test and deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never run two uploads at the same time.
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+env:
+  SITE_URL: https://www.ashaparth.com
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      # Actions are pinned to exact commits because one of them handles the FTP password.
+      - name: Get the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up PHP (same version as the host)
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: '8.5'
+          extensions: mbstring, fileinfo, pdo_mysql, openssl, zip
+          coverage: none
+
+      - name: Check PHP syntax
+        run: find . -name '*.php' -not -path './app/lib/*' -not -path './.git/*' -print0 | xargs -0 -n1 php -l > /dev/null
+
+      - name: Open every page and check every link
+        run: php tools/build-static.php
+
+      - name: Fail if any page logged a PHP error
+        run: |
+          if [ -s storage/logs/php-error.log ]; then
+            cat storage/logs/php-error.log
+            exit 1
+          fi
+
+      - name: Prepare the upload folder
+        run: |
+          php tools/package-deploy.php
+          mkdir upload
+          unzip -q ashaparth-upload.zip -d upload
+          # These hold live data. They must never be part of the upload: the FTP
+          # action deletes any folder it uploaded earlier that later goes missing.
+          rm -rf upload/storage/logs upload/storage/uploads
+          echo "$GITHUB_SHA" > upload/assets/version.txt
+
+      - name: Check the upload folder is safe
+        run: |
+          test -f upload/.htaccess
+          test -f upload/index.php
+          test -f upload/app/.htaccess
+          test -f upload/storage/.htaccess
+          for path in app/config.local.php storage/logs storage/uploads tools dist README.md .git; do
+            if [ -e "upload/$path" ]; then
+              echo "Refusing to deploy: upload/$path should not be here"
+              exit 1
+            fi
+          done
+
+      - name: Check the FTP secrets are set
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          if [ -z "$FTP_SERVER" ] || [ -z "$FTP_USERNAME" ] || [ -z "$FTP_PASSWORD" ]; then
+            echo "Add FTP_SERVER, FTP_USERNAME and FTP_PASSWORD in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      - name: Upload changed files
+        uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./upload/
+          server-dir: ./
+
+      - name: Check the live site
+        run: |
+          fail=0
+
+          # This commit must really be live. Catches an FTP account in the wrong folder.
+          live=$(curl -fsS "$SITE_URL/assets/version.txt?$GITHUB_SHA" || true)
+          if [ "$live" != "$GITHUB_SHA" ]; then
+            echo "Upload did not reach the live site (found: ${live:-nothing})"
+            fail=1
+          fi
+
+          for path in / /about /services /services/resume-website /live-darshan-service /portfolio /blog /contact /get-a-quote /sitemap.xml; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$SITE_URL$path")
+            echo "$code $path"
+            [ "$code" = "200" ] || fail=1
+          done
+
+          for path in /app/config.local.php /app/config.php /storage/logs/ /storage/uploads/ /database/schema.sql; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$SITE_URL$path")
+            echo "$code $path (must stay blocked)"
+            [ "$code" = "403" ] || fail=1
+          done
+
+          for address in http://ashaparth.com/ https://ashaparth.com/ http://www.ashaparth.com/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$address")
+            echo "$code $address (must redirect)"
+            [ "$code" = "301" ] || fail=1
+          done
+
+          exit $fail

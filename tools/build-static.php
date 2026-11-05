@@ -66,14 +66,21 @@ function copy_tree(string $from, string $to): int
 function fetch(string $url): array
 {
     $context = stream_context_create(['http' => ['ignore_errors' => true, 'follow_location' => 0, 'timeout' => 20]]);
-    $body    = @file_get_contents($url, false, $context);
-    $status  = 0;
-    foreach ($http_response_header ?? [] as $line) {
-        if (preg_match('~^HTTP/\S+\s+(\d{3})~', $line, $m)) {
+    $stream  = @fopen($url, 'r', false, $context);
+    if (!$stream) {
+        return [0, ''];
+    }
+    $headers = stream_get_meta_data($stream)['wrapper_data'] ?? [];
+    $body    = (string) stream_get_contents($stream);
+    fclose($stream);
+
+    $status = 0;
+    foreach ($headers as $line) {
+        if (preg_match('~^HTTP/\S+\s+(\d{3})~', (string) $line, $m)) {
             $status = (int) $m[1];
         }
     }
-    return [$status, (string) $body];
+    return [$status, $body];
 }
 
 function write_page(string $dist, string $path, string $html): void

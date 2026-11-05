@@ -113,6 +113,35 @@ mpp\php\php.exe tools\package-deploy.php`. In cPanel > *File Manager*, open `pub
 
 ---
 
+## Automatic deployment (CI/CD)
+
+Every push to `main` runs `.github/workflows/deploy.yml`, which:
+
+1. Tests the site on PHP 8.5, the same version as the host: syntax, every page, every link, and any PHP errors.
+2. Stops if anything fails, so a broken version is never uploaded.
+3. Uploads only the files that changed, over encrypted FTP.
+4. Checks the live site: the new version is really there, main pages load, private folders are blocked, and old addresses redirect.
+
+You can also start it from the **Actions** tab on GitHub with **Run workflow**.
+
+**One-time setup**
+
+1. In cPanel > *FTP Accounts*, create an account (e.g. `deploy@ashaparth.com`) with a strong password. Set its directory to `public_html` only, so it cannot reach anything else.
+2. In GitHub, open the repo's *Settings > Secrets and variables > Actions* and add three repository secrets:
+   - `FTP_SERVER`: e.g. `ftp.ashaparth.com`
+   - `FTP_USERNAME`: the full FTP username
+   - `FTP_PASSWORD`: its password
+
+**What deploys never touch**
+
+`app/config.local.php`, `storage/logs`, `storage/uploads`, `.user.ini`, `php.ini`, `.well-known` and `cgi-bin`. These stay on the server only. Keep passwords in `config.local.php` and nowhere else.
+
+**Rules to follow**
+
+- Change site files in git, not in cPanel. The next deploy of a changed file overwrites any edit made on the server.
+- Never add `dangerous-clean-slate` to the workflow. It erases the whole server folder, including `config.local.php` and uploaded resumes.
+- To undo a bad release, run `git revert <commit>` and push. That deploys the previous version.
+
 ## Editing content
 
 | To change… | Edit |

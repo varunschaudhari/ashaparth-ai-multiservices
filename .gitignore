@@ -19,3 +19,4 @@ Thumbs.db
 
 # Upload package (see tools/package-deploy.php)
 ashaparth-upload.zip
+upload/
