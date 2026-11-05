@@ -126,7 +126,7 @@ You can also start it from the **Actions** tab on GitHub with **Run workflow**.
 
 **One-time setup**
 
-1. In cPanel > *FTP Accounts*, create an account (e.g. `deploy@ashaparth.com`) with a strong password. Set its directory to `public_html` only, so it cannot reach anything else.
+1. In cPanel > *FTP Accounts*, create an account (e.g. `deploy@ashaparth.com`) with a strong password. Set its directory to the folder holding the live site (`ashaparth.com`, with nothing after it), so it cannot reach anything else. If this is wrong, the deploy reports that the upload did not reach the live site.
 2. In GitHub, open the repo's *Settings > Secrets and variables > Actions* and add three repository secrets:
    - `FTP_SERVER`: e.g. `ftp.ashaparth.com`
    - `FTP_USERNAME`: the full FTP username

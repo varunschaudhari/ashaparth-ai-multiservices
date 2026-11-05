@@ -2,7 +2,7 @@
 # If any test fails, nothing is uploaded.
 #
 # Needs three repository secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD.
-# The FTP account must be locked to public_html (see README.md).
+# The FTP account must be locked to the live site folder (see README.md).
 #
 # Server-only files are safe: app/config.local.php, storage/logs, storage/uploads,
 # .user.ini, php.ini, .well-known and cgi-bin are never sent, changed or deleted.
