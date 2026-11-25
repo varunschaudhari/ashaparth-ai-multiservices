@@ -3,6 +3,9 @@
 defined('APP_ROOT') || exit;
 
 $goals = [
+    ['mic', 'I want a voice assistant that talks to visitors', url('services/ai-voice-assistants'), false],
+    ['cpu', 'I want a smart device or interactive installation', url('services/iot-interactive-hardware'), false],
+    ['server', 'I need servers and a dashboard for devices or apps', url('services/backend-server-infrastructure'), false],
     ['window-stack', 'I need a website for my business', url('services/website-development'), false],
     ['person-vcard', 'I want a resume website for my job search', url('services/resume-website'), false],
     ['phone', 'I have an idea for a mobile app', url('services/mobile-app-development'), false],

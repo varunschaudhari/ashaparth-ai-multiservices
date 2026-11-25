@@ -2,7 +2,7 @@
 defined('APP_ROOT') || exit;
 $delays = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
 partial('page-hero', [
-    'title'   => 'Website, App & Marketing Services in Jalgaon',
+    'title'   => 'AI, IoT, Software & Marketing Services in Jalgaon',
     'text'    => 'Technology to build your business and marketing to grow it, delivered by one accountable team.',
     'crumbs'  => [['Services', 'services']],
     'eyebrow' => 'What we do',
@@ -11,7 +11,7 @@ partial('page-hero', [
 ]);
 
 $groups = [
-    'build' => ['Build', 'Technology services', 'Websites, apps, AI and software that form the foundation of your digital business.'],
+    'build' => ['Build', 'Technology services', 'AI voice assistants, smart devices, servers, websites, apps and software that form the foundation of your digital business.'],
     'grow'  => ['Grow', 'Marketing & creative services', 'Reach the right audience, build your brand and generate consistent leads.'],
 ];
 ?>

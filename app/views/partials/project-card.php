@@ -14,11 +14,11 @@ $isTemple = $p['category'] === 'Temple Solutions';
   <div class="project-body">
     <div class="project-meta">
       <span class="badge<?= $isTemple ? '' : ' badge-maroon' ?>"><?= e($p['category']) ?></span>
-      <?php if ($p['is_sample']): ?><span class="badge badge-sample">Sample</span><?php elseif (!empty($p['url'])): ?><span class="badge badge-live"><?= icon('circle-fill') ?> Live</span><?php endif; ?>
+      <?php if ($p['is_sample']): ?><span class="badge badge-sample">Sample</span><?php elseif (!empty($p['url']) && empty($p['link_label'])): ?><span class="badge badge-live"><?= icon('circle-fill') ?> Live</span><?php endif; ?>
     </div>
     <h3><a href="<?= e(url('portfolio/' . $slug)) ?>"><?= e($p['title']) ?></a></h3>
-    <div class="project-client"><?= icon('geo-alt') ?> <?= e($p['client']) ?>, <?= e($p['location']) ?></div>
-    <p><?= e($p['summary']) ?></p>
+    <div class="project-client"><?= icon('geo-alt') ?> <?= ph($p['client']) ?>, <?= ph($p['location']) ?></div>
+    <p><?= ph($p['summary']) ?></p>
     <span class="link-arrow">View case study <?= icon('arrow-right') ?></span>
   </div>
 </article>

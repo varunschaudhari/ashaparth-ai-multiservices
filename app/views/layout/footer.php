@@ -11,7 +11,7 @@
           <span class="brand-sub">MULTISERVICES</span>
         </span>
       </a>
-      <p><?= e(config('tagline')) ?>. Websites, apps, AI, software, marketing and complete temple digitisation, from Amalner to the world.</p>
+      <p><?= e(config('tagline')) ?>. AI voice assistants, IoT devices, servers, websites, apps, marketing and complete temple digitisation, from Amalner to the world.</p>
       <div class="social">
         <?php foreach (social_links() as $s): ?>
           <a href="<?= e($s['href']) ?>" target="_blank" rel="noopener" aria-label="<?= e($s['label']) ?>"><?= icon($s['icon']) ?></a>
@@ -58,7 +58,7 @@
 
   <div class="footer-bottom">
     <div class="container">
-      <p class="mb-0">© <?= date('Y') ?> <?= e(config('legal_name')) ?>. All rights reserved.<?php if (config('gst_number')): ?> · GSTIN: <?= e(config('gst_number')) ?><?php endif; ?></p>
+      <p class="mb-0">© <?= date('Y') ?> <?= e(config('legal_name')) ?>. All rights reserved.<?php if (config('gst_number')): ?> · GSTIN: <?= e(config('gst_number')) ?><?php endif; ?><?php if (config('udyam_number')): ?> · Udyam: <?= e(config('udyam_number')) ?><?php endif; ?></p>
       <nav aria-label="Legal">
         <a href="<?= e(url('privacy-policy')) ?>">Privacy Policy</a>
         <a href="<?= e(url('terms-and-conditions')) ?>">Terms &amp; Conditions</a>

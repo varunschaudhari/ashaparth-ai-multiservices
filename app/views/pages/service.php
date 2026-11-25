@@ -6,6 +6,9 @@ $delays = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
 $others = array_filter(services(), fn ($k) => $k !== $slug, ARRAY_FILTER_USE_KEY);
 uasort($others, fn ($a, $b) => ($b['category'] === $s['category']) <=> ($a['category'] === $s['category']));
 $related = !empty($s['related_post']) ? (data('blog')[$s['related_post']] ?? null) : null;
+// Projects that used this service (set by 'service_slugs' in app/data/portfolio.php).
+$relatedWork = array_filter(data('portfolio'), fn ($p) => !$p['is_sample'] && in_array($slug, $p['service_slugs'] ?? [], true));
+$steps = count($s['process']);
 
 $whatsapp = whatsapp_url($s['whatsapp_text'] ?? 'Hello AshaParth AI, I am interested in ' . $s['title'] . '.');
 $waButton = '<a class="btn btn-whatsapp" href="' . e($whatsapp) . '" target="_blank" rel="noopener">' . icon('whatsapp') . ' ' . e($s['cta_label'] ?? 'Discuss on WhatsApp') . '</a>';
@@ -87,11 +90,11 @@ partial('page-hero', [
   <div class="container">
     <div class="section-head center">
       <span class="eyebrow">Our process</span>
-      <h2>How it works</h2>
+      <h2><?= e($s['process_heading'] ?? 'How it works') ?></h2>
     </div>
-    <div class="process">
+    <div class="process<?= $steps > 4 ? ' process-long' : '' ?>" style="--steps: <?= $steps ?>">
       <?php foreach ($s['process'] as $k => [$t, $d]): ?>
-        <div class="step reveal <?= $delays[$k] ?>"><div class="step-num"></div><h3><?= e($t) ?></h3><p><?= e($d) ?></p></div>
+        <div class="step reveal <?= $delays[$k % 4] ?>"><div class="step-num"></div><h3><?= e($t) ?></h3><p><?= e($d) ?></p></div>
       <?php endforeach; ?>
     </div>
   </div>
@@ -106,6 +109,21 @@ partial('page-hero', [
     </div>
   </div>
 </section>
+
+<!-- ── Related work ──────────────────────────────────────────────────── -->
+<?php if ($relatedWork): ?>
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Related work</span>
+      <h2>Projects using this service</h2>
+    </div>
+    <div class="grid <?= count($relatedWork) >= 3 ? 'grid-3' : 'grid-2' ?> related-work">
+      <?php foreach ($relatedWork as $pslug => $project): partial('project-card', ['slug' => $pslug, 'p' => $project, 'delay' => '']); endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <!-- ── FAQ ───────────────────────────────────────────────────────────── -->
 <section class="section section-soft">

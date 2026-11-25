@@ -27,7 +27,7 @@ $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 $routes = [
     ''                     => ['home', ['title' => '', 'description' => config('description')]],
     'about'                => ['about', ['title' => 'About Our Digital Agency in Amalner, Jalgaon', 'description' => 'Meet the founders of AshaParth AI Multiservices, a digital agency from Amalner, Jalgaon helping businesses and temples grow with technology.']],
-    'services'             => ['services', ['title' => 'Digital Services in Jalgaon & Maharashtra', 'description' => 'Website development, resume websites, mobile apps, AI & automation, custom software, SEO, social media marketing, paid ads and graphic design.']],
+    'services'             => ['services', ['title' => 'Digital Services in Jalgaon & Maharashtra', 'description' => 'AI voice assistants, IoT devices, server infrastructure, websites, apps, custom software, SEO, social media, ads and design, from Amalner, Jalgaon.']],
     'temple-solutions'     => ['temple-solutions', ['title' => 'Temple Websites, Apps & Live Darshan Services', 'description' => 'Complete digital solutions for temples: 24x7 live darshan, HD camera setup, temple websites, mobile apps, online donations, pooja booking and social media.']],
     'live-darshan-service' => ['live-darshan-service', ['title' => 'Temple Live Darshan Service in Maharashtra', 'description' => 'HD live darshan for temples across Maharashtra: camera setup, 24x7 or aarti-time streaming on YouTube and your website, with full support.', 'schema' => [[
         '@context'    => 'https://schema.org',
@@ -108,7 +108,8 @@ if (preg_match('~^portfolio/([a-z0-9-]+)$~', $path, $m)) {
     render('portfolio-detail', ['project' => $project, 'slug' => $m[1]], [
         'title'       => $project['seo_title'] ?? $project['title'] . ' – Case Study',
         'description' => $project['meta_description'] ?? $project['summary'],
-        'noindex'     => $project['is_sample'],
+        'noindex'     => $project['is_sample'] || has_placeholder($project),
+        'schema'      => [project_schema($m[1], $project)],
         'og_image'    => $project['image'] ?? 'img/og-image.png',
     ]);
     exit;

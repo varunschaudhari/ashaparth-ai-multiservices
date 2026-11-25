@@ -18,9 +18,10 @@ return [
     'legal_type'   => 'Proprietorship',
     'tagline'      => 'Smart Digital Solutions That Grow Your Business',
     'home_title'   => 'Website & App Development Company in Jalgaon | AshaParth AI',
-    'description'  => 'Digital agency in Amalner, Jalgaon: websites, mobile apps, AI automation, software, SEO, social media and temple live darshan. Get a free quote.',
-    'founded_year' => 'XXXX', // TODO: year the business started
-    'gst_number'   => '',     // Leave empty to hide. Example: '27ABCDE1234F1Z5'
+    'description'  => 'Amalner, Jalgaon tech company: AI voice assistants, IoT devices, servers, websites, apps, software, marketing and temple live darshan. Free quote.',
+    'founded_year' => '2021',
+    'gst_number'   => '27ARAPC3405E1ZJ',   // shown in the footer; '' hides it
+    'udyam_number' => 'UDYAM-MH-14-0138715', // shown in the footer; '' hides it
 
     // Full public URL without trailing slash, e.g. 'https://www.yourdomain.com'.
     // Leave empty to auto-detect from the current request.
@@ -64,7 +65,7 @@ return [
             'name'  => 'Ashish Chaudhari',
             'role'  => 'Founder',
             'photo' => '',
-            'bio'   => 'Founder of AshaParth AI Multiservices and the contact for temple trusts joining Maharashtra Devasthan Live.',
+            'bio'   => 'Founder of AshaParth AI Multiservices. MCA from MIT Pune, with 14 years of industry experience. The contact for temple trusts joining Maharashtra Devasthan Live.',
         ],
         [
             'name'  => 'Vishakha Chaudhari',
@@ -84,7 +85,7 @@ return [
     // Only use numbers you can back up. Add client and project totals once counted.
     'stats' => [
         ['value' => '3', 'label' => 'Temple Projects Delivered'],
-        ['value' => '9', 'label' => 'Digital Services'],
+        ['value' => '12', 'label' => 'Digital Services'],
         ['value' => '36', 'label' => 'Maharashtra Districts Covered'],
         ['value' => '24x7', 'label' => 'Live Darshan Streaming'],
     ],
@@ -94,6 +95,7 @@ return [
         'PHP', 'Laravel', 'WordPress', 'React', 'Node.js', 'Flutter',
         'Android', 'Python', 'OpenAI / LLMs', 'MySQL', 'Firebase', 'Razorpay',
         'YouTube Live', 'WhatsApp Business API', 'Google Ads', 'Meta Ads', 'Figma', 'Canva',
+        'OpenAI Whisper', 'Google Cloud Speech', 'Bhashini', 'ESP32', 'Raspberry Pi', 'Arduino',
     ],
 
     // Hidden until real reviews are added to app/data/testimonials.php.

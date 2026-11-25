@@ -12,7 +12,7 @@ $delays    = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
     <div>
       <div class="hero-badge"><span>NEW</span> Maharashtra Devasthan Live: temples going digital</div>
       <h1>Website, app &amp; AI company in Jalgaon that helps you <span class="hl">grow</span></h1>
-      <p class="hero-text">From websites and mobile apps to AI automation, custom software and digital marketing, <?= e(config('name')) ?> is your complete technology partner. Based in Amalner, Jalgaon district, and working with clients across Maharashtra, India and worldwide.</p>
+      <p class="hero-text">From AI voice assistants, IoT devices and server infrastructure to websites, mobile apps and digital marketing, <?= e(config('name')) ?> is your complete technology partner for businesses, education &amp; institutions, and temples. Based in Amalner, Jalgaon district, and working with clients across Maharashtra, India and worldwide.</p>
       <div class="hero-actions">
         <a class="btn btn-primary btn-lg" href="<?= e(url('get-a-quote')) ?>"><?= icon('send') ?> Get a Free Quote</a>
         <a class="btn btn-outline btn-lg" href="<?= e(url('services')) ?>">Explore Services <?= icon('arrow-right') ?></a>
@@ -130,7 +130,7 @@ $delays    = ['', 'reveal-d1', 'reveal-d2', 'reveal-d3'];
     </div>
     <div class="media-panel reveal reveal-d2">
       <h3>From Amalner to the world</h3>
-      <p>We started with a simple belief: every business and every temple, whatever its size or location, deserves technology that truly works for it. Today we help businesses and temples build, automate and grow, and we work with clients anywhere in India and abroad.</p>
+      <p>We started with a simple belief: every business and every temple, whatever its size or location, deserves technology that truly works for it. Today we help businesses, education &amp; institutions, and temples build, automate and grow, and we work with clients anywhere in India and abroad.</p>
       <div class="mini-stats">
         <div><b>Free</b><span>First consultation</span></div>
         <div><b>Written</b><span>Quotes with no hidden costs</span></div>

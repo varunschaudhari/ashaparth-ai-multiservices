@@ -11,6 +11,64 @@ defined('APP_ROOT') || exit;
 
 return [
 
+    // [PLACEHOLDER] entries below need real details. Until every
+    // [PLACEHOLDER] is replaced, the page is hidden from Google and the sitemap.
+    'lumora-healthcare-iot' => [
+        'title'    => 'Lumora Healthcare LLP: IoT Deployment',
+        'seo_title' => 'Lumora Healthcare IoT Deployment Case Study',
+        'meta_description' => 'IoT devices, an AI voice assistant, a backend dashboard and the dentalclaimdesk.com website, built by AshaParth AI for Lumora Healthcare LLP.',
+        'client'   => 'Lumora Healthcare LLP',
+        'location' => 'Vasai, Maharashtra & Cypress, Texas, USA',
+        'category' => 'IoT & Hardware',
+        'icon'     => 'cpu',
+        'year'     => '[PLACEHOLDER]',
+        'services' => ['IoT & Interactive Hardware', 'Backend & Server Infrastructure', 'AI Voice Assistants', 'Website Development'],
+        'service_slugs' => ['iot-interactive-hardware', 'backend-server-infrastructure', 'ai-voice-assistants', 'website-development'],
+        'url'      => 'https://dentalclaimdesk.com',
+        'url_label'=> 'dentalclaimdesk.com',
+        'image'    => '',
+        'summary'  => 'IoT devices, an AI voice assistant, a backend dashboard and the dentalclaimdesk.com website for Lumora Healthcare LLP. [PLACEHOLDER: device, number of units, what it does]',
+        'challenge'=> 'Lumora Healthcare LLP runs Dental Claim Desk, a remote dental billing service for U.S. practices, from Vasai, Maharashtra and Cypress, Texas. [PLACEHOLDER: the problem Lumora needed to solve]',
+        'solution' => 'We delivered IoT devices with a backend and dashboard, an AI voice assistant, and the company website, dentalclaimdesk.com. [PLACEHOLDER: device, number of units, what it does]',
+        'features' => [
+            'Company website: dentalclaimdesk.com',
+            'IoT devices: [PLACEHOLDER: device and number of units]',
+            'Backend and dashboard: [PLACEHOLDER: what it manages]',
+            'AI voice assistant: [PLACEHOLDER: what it does and its languages]',
+        ],
+        'tech'     => ['[PLACEHOLDER: hardware and software used]'],
+        'results'  => ['[PLACEHOLDER: real, measurable results only]'],
+        'is_sample' => false,
+    ],
+
+    'balkavi-thombare-vidyalaya' => [
+        'title'    => 'Balkavi Thombare Vidyalaya, Dharangaon',
+        'seo_title' => 'Balkavi Thombare Vidyalaya Case Study',
+        'meta_description' => 'A school website and software built by AshaParth AI Multiservices for Balkavi Thombare Vidyalaya, Dharangaon, a school established in 2000.',
+        'client'   => 'Balkavi Thombare Vidyalaya',
+        'location' => 'Dharangaon, Jalgaon, Maharashtra',
+        'client_facts' => [['School established', '2000']],
+        'category' => 'Education',
+        'icon'     => 'mortarboard',
+        'year'     => '[PLACEHOLDER: year of this project]',
+        'services' => ['Website Development', 'Custom Software'],
+        'service_slugs' => ['website-development', 'custom-software'],
+        'url'      => '', // [PLACEHOLDER] add the school website address if it is live
+        'url_label'=> '',
+        'image'    => '',
+        'summary'  => 'A school website and software for Balkavi Thombare Vidyalaya, Dharangaon. [PLACEHOLDER: what the software or app does]',
+        'challenge'=> '[PLACEHOLDER: the problem the school needed to solve]',
+        'solution' => 'We built a website for the school, along with [PLACEHOLDER: the software or app, and what it does].',
+        'features' => [
+            'School website',
+            'School software: [PLACEHOLDER: what it does]',
+            '[PLACEHOLDER: key feature]',
+        ],
+        'tech'     => ['[PLACEHOLDER: technologies used]'],
+        'results'  => ['[PLACEHOLDER: real, measurable results only]'],
+        'is_sample' => false,
+    ],
+
     'mangal-grah-mandir-website' => [
         'title'    => 'Shri Mangal Grah Mandir: Temple Website',
         'seo_title' => 'Shri Mangal Grah Mandir Website Case Study',
@@ -20,6 +78,7 @@ return [
         'category' => 'Temple Solutions',
         'icon'     => 'globe2',
         'services' => ['Website Development', 'Online Payments', 'Live Darshan', 'Maintenance'],
+        'service_slugs' => ['website-development'],
         'url'      => 'http://mangalagrahmandir.in',
         'url_label'=> 'mangalagrahmandir.in',
         'image'    => 'img/portfolio/mangal-grah-mandir-website.jpg',
@@ -55,6 +114,7 @@ return [
         'category' => 'Custom Software',
         'icon'     => 'boxes',
         'services' => ['Custom Software', 'Progressive Web App', 'WhatsApp Automation'],
+        'service_slugs' => ['custom-software', 'ai-automation'],
         'url'      => 'https://mandir.aumora.io',
         'url_label'=> 'mandir.aumora.io (staff login)',
         'image'    => '',
@@ -92,6 +152,7 @@ return [
         'category' => 'Temple Solutions',
         'icon'     => 'broadcast',
         'services' => ['Live Darshan', 'Social Media Management', 'Event Promotion'],
+        'service_slugs' => ['social-media-marketing'],
         'url'      => 'https://www.youtube.com/@Shrimangaldevgrahamandir',
         'url_label'=> 'YouTube: @Shrimangaldevgrahamandir',
         'image'    => '',

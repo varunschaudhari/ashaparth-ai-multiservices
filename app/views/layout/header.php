@@ -39,6 +39,15 @@ $sameAs = array_values(array_filter(array_column(social_links(), 'href'), fn ($h
 if ($sameAs) {
     $orgSchema['sameAs'] = $sameAs;
 }
+if (ctype_digit((string) config('founded_year'))) {
+    $orgSchema['foundingDate'] = config('founded_year');
+}
+if (config('gst_number')) {
+    $orgSchema['taxID'] = config('gst_number');
+}
+if (config('udyam_number')) {
+    $orgSchema['identifier'] = ['@type' => 'PropertyValue', 'propertyID' => 'Udyam Registration Number', 'value' => config('udyam_number')];
+}
 $schemas = array_merge([$orgSchema], $meta['schema']);
 
 $templeNav = [
@@ -120,17 +129,24 @@ $templeNav = [
         <li class="nav-item has-dropdown">
           <button class="nav-link<?= is_active('services') ? ' active' : '' ?>" type="button" aria-expanded="false" aria-haspopup="true">Services <?= icon('chevron-down') ?></button>
           <div class="dropdown dropdown-mega">
-            <div class="dropdown-title">Build</div>
-            <div class="dropdown-title">Grow</div>
             <?php
-            $build = array_values(array_map(null, array_keys(services('build')), services('build')));
-            $grow  = array_values(array_map(null, array_keys(services('grow')), services('grow')));
-            for ($i = 0, $n = max(count($build), count($grow)); $i < $n; $i++):
-                foreach ([$build[$i] ?? null, $grow[$i] ?? null] as $pair):
-                    if (!$pair) { echo '<span></span>'; continue; }
-                    [$slug, $s] = $pair; ?>
-              <a href="<?= e(url('services/' . $slug)) ?>"><?= icon($s['icon']) ?><span><strong><?= e($s['title']) ?></strong><small><?= e(mb_strimwidth($s['short'], 0, 58, '…')) ?></small></span></a>
-            <?php endforeach; endfor; ?>
+            // Technology services fill two columns and marketing the third,
+            // so the menu stays short enough to fit on laptop screens.
+            $build   = services('build');
+            $half    = (int) ceil(count($build) / 2);
+            $columns = [
+                ['Build', array_slice($build, 0, $half, true)],
+                ['', array_slice($build, $half, null, true)],
+                ['Grow', services('grow')],
+            ];
+            foreach ($columns as [$heading, $items]): ?>
+              <div class="mega-col">
+                <div class="dropdown-title"><?= $heading !== '' ? e($heading) : '&nbsp;' ?></div>
+                <?php foreach ($items as $slug => $s): ?>
+                  <a href="<?= e(url('services/' . $slug)) ?>"><?= icon($s['icon']) ?><span><strong><?= e($s['title']) ?></strong><small><?= e(mb_strimwidth($s['short'], 0, 58, '…')) ?></small></span></a>
+                <?php endforeach; ?>
+              </div>
+            <?php endforeach; ?>
             <div class="dropdown-footer"><a href="<?= e(url('services')) ?>">View all services <?= icon('arrow-right') ?></a></div>
           </div>
         </li>

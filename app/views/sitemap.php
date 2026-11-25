@@ -10,7 +10,7 @@ foreach (array_keys(services()) as $slug) {
     $urls[] = ['services/' . $slug];
 }
 foreach (data('portfolio') as $slug => $p) {
-    if (!$p['is_sample']) {
+    if (!$p['is_sample'] && !has_placeholder($p)) {
         $urls[] = ['portfolio/' . $slug];
     }
 }

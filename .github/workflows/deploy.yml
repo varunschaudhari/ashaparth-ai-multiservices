@@ -110,7 +110,7 @@ jobs:
             fail=1
           fi
 
-          for path in / /about /services /services/resume-website /live-darshan-service /portfolio /blog /contact /get-a-quote /sitemap.xml; do
+          for path in / /about /services /services/ai-voice-assistants /services/resume-website /live-darshan-service /portfolio /blog /contact /get-a-quote /sitemap.xml; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "$SITE_URL$path")
             echo "$code $path"
             [ "$code" = "200" ] || fail=1

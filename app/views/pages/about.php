@@ -16,9 +16,9 @@ partial('page-hero', [
     <div class="reveal">
       <span class="eyebrow">Our story</span>
       <h2>Technology with a personal touch</h2>
-      <p class="lead">AshaParth AI Multiservices was founded by Ashish Chaudhari, Vishakha Chaudhari and Priya Chaudhari with a simple belief: every business and every temple, whatever its size or location, deserves technology that truly works for it.</p>
-      <p>From our base in Amalner, Jalgaon district, we saw how many local businesses, institutions and temples were missing out on the opportunities of the digital world, not because they did not want to grow, but because they lacked a trusted partner who could explain things simply and deliver reliably.</p>
-      <p>Today we offer a complete range of services: websites, resume websites, mobile apps, AI and automation, custom software, SEO, social media, paid advertising and branding. Through our temple solutions and the <a href="<?= e(url('devasthan-live')) ?>">Maharashtra Devasthan Live</a> initiative, we also help temples connect with devotees around the world through live darshan, websites, apps and online donations.</p>
+      <p class="lead">AshaParth AI Multiservices was founded in 2021 by Ashish Chaudhari, Vishakha Chaudhari and Priya Chaudhari with a simple belief: every business and every temple, whatever its size or location, deserves technology that truly works for it.</p>
+      <p>From our base in Amalner, Jalgaon district, we saw how many local businesses, education &amp; institutions, and temples were missing out on the opportunities of the digital world, not because they did not want to grow, but because they lacked a trusted partner who could explain things simply and deliver reliably.</p>
+      <p>Today we offer a complete range of services: AI voice assistants, IoT and interactive hardware, backend and server infrastructure, websites, resume websites, mobile apps, AI and automation, custom software, SEO, social media, paid advertising and branding. Through our temple solutions and the <a href="<?= e(url('devasthan-live')) ?>">Maharashtra Devasthan Live</a> initiative, we also help temples connect with devotees around the world through live darshan, websites, apps and online donations.</p>
     </div>
     <div class="media-panel reveal reveal-d2">
       <h3>What “multiservices” means for you</h3>
@@ -40,7 +40,7 @@ partial('page-hero', [
       <div class="card reveal">
         <div class="icon-box"><?= icon('bullseye') ?></div>
         <h3>Our Mission</h3>
-        <p class="mb-0">To make modern technology simple, affordable and effective for businesses, institutions and temples, so they can serve more people and grow with confidence.</p>
+        <p class="mb-0">To make modern technology simple, affordable and effective for businesses, education &amp; institutions, and temples, so they can serve more people and grow with confidence.</p>
       </div>
       <div class="card reveal reveal-d1">
         <div class="icon-box maroon"><?= icon('eye') ?></div>

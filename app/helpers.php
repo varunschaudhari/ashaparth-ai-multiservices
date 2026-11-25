@@ -253,6 +253,42 @@ function breadcrumb_schema(array $crumbs): string
     return '<script type="application/ld+json">' . json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) . '</script>';
 }
 
+/** True when text or data still contains a [PLACEHOLDER…] marker. */
+function has_placeholder($value): bool
+{
+    return strpos((string) json_encode($value, JSON_UNESCAPED_UNICODE), '[PLACEHOLDER') !== false;
+}
+
+/** Escape for HTML and highlight [PLACEHOLDER…] markers so they are easy to spot. */
+function ph($value): string
+{
+    return (string) preg_replace('/\[PLACEHOLDER[^\]]*\]/', '<mark class="ph">$0</mark>', e($value));
+}
+
+/** CreativeWork structured data for a portfolio project. Placeholder values are left out. */
+function project_schema(string $slug, array $p): array
+{
+    $schema = [
+        '@context' => 'https://schema.org',
+        '@type'    => 'CreativeWork',
+        'name'     => $p['title'],
+        'url'      => absolute_url('portfolio/' . $slug),
+        'genre'    => $p['category'],
+        'creator'  => ['@type' => 'Organization', 'name' => config('name'), 'url' => absolute_url()],
+    ];
+    $description = $p['meta_description'] ?? $p['summary'];
+    if (!has_placeholder($description)) {
+        $schema['description'] = $description;
+    }
+    if (!has_placeholder($p['client'])) {
+        $schema['about'] = ['@type' => 'Organization', 'name' => $p['client']];
+    }
+    if (!empty($p['year']) && ctype_digit((string) $p['year'])) {
+        $schema['dateCreated'] = (string) $p['year'];
+    }
+    return $schema;
+}
+
 // ── Data ────────────────────────────────────────────────────────────────
 
 /** Load a data file from app/data (cached per request). */
