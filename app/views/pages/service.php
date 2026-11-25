@@ -36,7 +36,7 @@ partial('page-hero', [
       <span class="eyebrow">Overview</span>
       <h2><?= e($s['headline']) ?></h2>
       <p class="lead"><?= e($s['intro']) ?></p>
-      <h3 style="margin-top:28px"><?= e($s['title']) ?> in Jalgaon and Amalner</h3>
+      <h3 style="margin-top:28px">Based in Amalner, Jalgaon</h3>
       <p><?= e($s['local']) ?></p>
       <?php if ($related): ?>
         <p class="mb-0">Related reading: <a href="<?= e(url('blog/' . $s['related_post'])) ?>"><strong><?= e($related['title']) ?></strong></a></p>

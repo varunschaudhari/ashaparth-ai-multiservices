@@ -17,7 +17,7 @@ return [
     'legal_name'   => 'AshaParth AI Multiservices',
     'legal_type'   => 'Proprietorship',
     'tagline'      => 'Smart Digital Solutions That Grow Your Business',
-    'home_title'   => 'Website & App Development Company in Jalgaon | AshaParth AI',
+    'home_title'   => 'AI, Website & App Development Company | AshaParth AI',
     'description'  => 'Amalner, Jalgaon tech company: AI voice assistants, IoT devices, servers, websites, apps, software, marketing and temple live darshan. Free quote.',
     'founded_year' => '2021',
     'gst_number'   => '27ARAPC3405E1ZJ',   // shown in the footer; '' hides it
